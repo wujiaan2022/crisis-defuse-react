@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Header from "./components/Header";
-import Header_simple from "./components/Header_simple";
-import Intro from "./components/Intro";
-import Hero from "./components/Hero";
-import CrisisSelector from "./components/CrisisSelector";
-import Footer from "./components/Footer";
+
+import Header_simple from "./components/layout/Header_simple";
+
+import Hero from "./components/layout/Hero";
+import CrisisSelector from "./components/features/CrisisSelector";
+import Footer from "./components/layout/Footer";
 
 import "./index.css"; // Tailwind styles
 

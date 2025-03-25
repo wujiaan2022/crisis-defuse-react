@@ -63,7 +63,7 @@ const CrisisSelector = () => {
           <button
             key={crisis}
             onClick={() => fetchScriptures(crisis)}
-            className={`px-4 py-2 rounded-lg shadow-md transition text-center ${
+            className={`cursor-pointer px-4 py-2 rounded-lg shadow-md transition text-center ${
               answers[crisis]
                 ? "bg-yellow-300"
                 : "bg-yellow-50 hover:bg-yellow-100"
@@ -84,7 +84,7 @@ const CrisisSelector = () => {
             <h4 className="text-xl font-bold text-yellow-900">📌 {crisis}</h4>
             <button
               onClick={() => toggleCollapse(crisis)}
-              className="text-sm text-yellow-800 underline hover:text-yellow-600"
+              className="cursor-pointer text-sm text-yellow-800 underline hover:text-yellow-600"
             >
               {collapsed[crisis] ? "Expand" : "Collapse"}
             </button>
@@ -107,7 +107,7 @@ const CrisisSelector = () => {
                               video: s.video ? baseURL + s.video : null,
                             })
                           }
-                          className="text-yellow-900 hover:underline"
+                          className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
                         </button>
@@ -134,7 +134,7 @@ const CrisisSelector = () => {
                               video: s.video ? baseURL + s.video : null,
                             })
                           }
-                          className="text-yellow-900 hover:underline"
+                          className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
                         </button>
@@ -161,7 +161,7 @@ const CrisisSelector = () => {
                               video: s.video ? baseURL + s.video : null,
                             })
                           }
-                          className="text-yellow-900 hover:underline"
+                          className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
                         </button>
@@ -182,7 +182,7 @@ const CrisisSelector = () => {
         <div className="text-center mt-6">
           <button
             onClick={resetAll}
-            className="bg-yellow-100 hover:bg-yellow-200 text-yellow-900 font-semibold px-6 py-2 rounded-full shadow"
+            className="cursor-pointer bg-yellow-100 hover:bg-yellow-200 text-yellow-900 font-semibold px-6 py-2 rounded-full shadow"
           >
             🔄 Reset
           </button>

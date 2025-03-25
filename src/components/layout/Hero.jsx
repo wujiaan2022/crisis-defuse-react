@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import introBg from "../assets/intro1.jpg"; // ✅ Background image
-import happyFamily from "../assets/happy1.png"; // ✅ Family image
+import introBg from "../../assets/intro1.jpg"; // ✅ Background image
+import happyFamily from "../../assets/happy1.png"; // ✅ Family image
 
 const Hero = () => (
   <div
@@ -9,12 +9,12 @@ const Hero = () => (
   >
     {/* ✅ Semi-transparent white overlay */}
     <div
-      className="absolute inset-0"
+      className="absolute inset-0 z-0"
       style={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }} // ✅ White with true transparency
     ></div>
 
     {/* ✅ Responsive Grid Layout */}
-    <div className="relative mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-4">
+    <div className="relative z-10 mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-4">
       {/* ✅ Highlight Text (Spans 3 cols) */}
       <h2 className="mt-0 mb-5 col-span-1 md:col-span-4 lg:col-span-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-red-950 font-bold text-left tracking-wider">
         Happiness is not far away!
