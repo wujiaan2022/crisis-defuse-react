@@ -1,20 +1,66 @@
 import pinyin from "pinyin";
 
-const ScripturePinyin = ({ content }) => {
-  const characters = content.split("");
+const ScripturePinyin = ({ title, content }) => {
+  if (!content) return null;
 
-  const pinyinArray = pinyin(content, {
-    style: pinyin.STYLE_TONE2, // "fo2" instead of "fó"
-  }).flat();
+  const overrideMap = {
+    南无: ["ná", "mó"],
+    那: ["nuó"],
+    耶: ["yē"],
+    他: ["tuó"],
+    啰: ["là"],
+    蒙: ["méng"],
+    阇: ["shē"],
+    嘇: ["shēn"],
+    佉: ["qiè"],
+    唵: ["ān"],
+    // Add more custom fixes here
+  };
+
+  function getCustomPinyin(text) {
+    for (const phrase in overrideMap) {
+      const index = text.indexOf(phrase);
+      if (index !== -1) {
+        const before = text.slice(0, index);
+        const after = text.slice(index + phrase.length);
+        return [
+          ...getCustomPinyin(before),
+          ...overrideMap[phrase].map((py, i) => [phrase[i], py]),
+          ...getCustomPinyin(after),
+        ];
+      }
+    }
+
+    const chars = text.split("");
+    const py = pinyin(text, { style: pinyin.STYLE_TONE }).flat();
+    return chars.map((c, i) => [c, py[i]]);
+  }
+
+  const titlePairs = title ? getCustomPinyin(title) : [];
+  const contentPairs = getCustomPinyin(content);
 
   return (
-    <div className="bg-yellow-50 p-3 rounded-lg mt-4 text-sm leading-loose text-yellow-900">
-      <strong>📜 Full Content (with Pinyin):</strong>
-      <div className="mt-2 space-y-2">
-        {characters.map((char, index) => (
-          <ruby key={index} className="text-xl mr-2">
+    <div className="bg-yellow-50 p-3 rounded-lg mt-4 text-sm text-yellow-900 leading-loose">
+      <strong className="block text-lg text-red-900 mb-2">🙏 Title:</strong>
+
+      <div className="mb-4 flex flex-wrap">
+        {titlePairs.map(([char, py], index) => (
+          <ruby key={index} className="text-xl mr-3">
             {char}
-            <rt className="text-xs text-yellow-700">{pinyinArray[index]}</rt>
+            <rt className="text-base text-yellow-700">{py}</rt>
+          </ruby>
+        ))}
+      </div>
+
+      <strong className="block text-lg text-red-900 mb-2">
+        📜 Full Content:
+      </strong>
+
+      <div className="flex flex-wrap">
+        {contentPairs.map(([char, py], index) => (
+          <ruby key={index} className="text-xl mr-3">
+            {char}
+            <rt className="text-base text-yellow-700">{py}</rt>
           </ruby>
         ))}
       </div>

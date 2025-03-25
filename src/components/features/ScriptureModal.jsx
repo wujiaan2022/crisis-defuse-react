@@ -1,5 +1,5 @@
 import React from "react";
-import pinyin from "pinyin";
+import ScripturePinyin from "./ScripturePinyin";
 
 const ScriptureModal = ({ scripture, onClose }) => {
   if (!scripture) return null;
@@ -57,9 +57,11 @@ const ScriptureModal = ({ scripture, onClose }) => {
           )}
 
           <div className="bg-yellow-50 p-3 rounded-lg mt-4 text-sm">
-            <strong>📜 Full Content:</strong>
-            <pre className="whitespace-pre-wrap mt-2 text-yellow-900">
-              <ScripturePinyin content={scripture.content} />
+            <pre className="whitespace-pre-wrap text-yellow-900">
+              <ScripturePinyin
+                title={scripture.title}
+                content={scripture.content}
+              />
             </pre>
           </div>
         </div>
