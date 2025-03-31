@@ -2,6 +2,8 @@ import ScriptureModal from "./ScriptureModal";
 
 import { useState } from "react";
 
+import { backendURL } from "../../config";
+
 const crises = [
   "Health Issues",
   "Depression & Emotional Struggles",
@@ -18,14 +20,14 @@ const CrisisSelector = () => {
 
   const [selectedScripture, setSelectedScripture] = useState(null);
 
-  const baseURL = "http://localhost:5000";
+  // const baseURL = "http://localhost:5000";
 
   const fetchScriptures = async (crisis) => {
     setLoadingCrisis(crisis);
     try {
       const query = `crises=${encodeURIComponent(crisis)}`;
       const response = await fetch(
-        `http://localhost:5000/scriptures/crisis-selection?${query}`
+        `${backendURL}/scriptures/crisis-selection?${query}`
       );
       const data = await response.json();
       setAnswers((prev) => ({
@@ -100,13 +102,23 @@ const CrisisSelector = () => {
                     {sections.foundation.map((s, i) => (
                       <li key={i}>
                         <button
-                          onClick={() =>
+                          onClick={() => {
+                            const audioURL = s.audio
+                              ? `${backendURL}/${s.audio}`
+                              : null;
+                            const videoURL = s.video
+                              ? `${backendURL}/${s.video}`
+                              : null;
+
+                            console.log("Audio URL:", audioURL);
+                            console.log("Video URL:", videoURL);
+
                             setSelectedScripture({
                               ...s,
-                              audio: s.audio ? baseURL + s.audio : null,
-                              video: s.video ? baseURL + s.video : null,
-                            })
-                          }
+                              audio: audioURL,
+                              video: videoURL,
+                            });
+                          }}
                           className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
@@ -127,13 +139,23 @@ const CrisisSelector = () => {
                     {sections.main.map((s, i) => (
                       <li key={i}>
                         <button
-                          onClick={() =>
+                          onClick={() => {
+                            const audioURL = s.audio
+                              ? `${backendURL}/${s.audio}`
+                              : null;
+                            const videoURL = s.video
+                              ? `${backendURL}/${s.video}`
+                              : null;
+
+                            console.log("Audio URL:", audioURL);
+                            console.log("Video URL:", videoURL);
+
                             setSelectedScripture({
                               ...s,
-                              audio: s.audio ? baseURL + s.audio : null,
-                              video: s.video ? baseURL + s.video : null,
-                            })
-                          }
+                              audio: audioURL,
+                              video: videoURL,
+                            });
+                          }}
                           className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
@@ -154,13 +176,23 @@ const CrisisSelector = () => {
                     {sections.help.map((s, i) => (
                       <li key={i}>
                         <button
-                          onClick={() =>
+                          onClick={() => {
+                            const audioURL = s.audio
+                              ? `${backendURL}/${s.audio}`
+                              : null;
+                            const videoURL = s.video
+                              ? `${backendURL}/${s.video}`
+                              : null;
+
+                            console.log("Audio URL:", audioURL);
+                            console.log("Video URL:", videoURL);
+
                             setSelectedScripture({
                               ...s,
-                              audio: s.audio ? baseURL + s.audio : null,
-                              video: s.video ? baseURL + s.video : null,
-                            })
-                          }
+                              audio: audioURL,
+                              video: videoURL,
+                            });
+                          }}
                           className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}

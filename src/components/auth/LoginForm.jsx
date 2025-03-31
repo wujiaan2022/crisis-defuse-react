@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { backendURL } from "../../config";
+
 const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,7 +11,7 @@ const LoginForm = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/users/login", {
+      const res = await fetch(`${backendURL}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

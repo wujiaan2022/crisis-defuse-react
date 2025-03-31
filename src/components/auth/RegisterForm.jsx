@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { backendURL } from "../../config";
+
 const RegisterForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,7 +22,7 @@ const RegisterForm = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/users/register", {
+      const res = await fetch(`${backendURL}/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
