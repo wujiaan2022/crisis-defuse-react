@@ -6,9 +6,7 @@ const Footer = () => (
     className="p-4 md:px-8 flex flex-col md:flex-row md:justify-between items-center gap-4 bg-cover bg-center bg-no-repeat shadow-md text-red-950"
     style={{ backgroundImage: `url(${headerBg})` }}
   >
-    <p className="font-medium">
-      🙏🏻 Stay tuned for our daily hot topic on <strong>Why & How</strong> 🌿
-    </p>
+    <p className="font-medium">🙏🏻 Stay tuned for our daily hot topics 🌿</p>
 
     <Link
       to="/topic/meditation-warning"
