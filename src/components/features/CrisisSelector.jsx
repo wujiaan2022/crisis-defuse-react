@@ -55,9 +55,15 @@ const CrisisSelector = () => {
 
   return (
     <div className="p-4 text-yellow-900 rounded-lg">
-      <h3 className="text-lg font-semibold text-center mb-4">
-        Click any area of life below to see the suggested scriptures 🌿
-      </h3>
+      <div className="text-lg font-semibold text-center mb-4">
+        <p>
+          🌟 Remember, whatever situation you are in right now, this is not the
+          end!
+        </p>
+        <p>
+          💖 You are Not alone, you are Not helpless, you are Not hopeless! 🌈
+        </p>
+      </div>
 
       {/* Crisis buttons */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

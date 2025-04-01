@@ -43,8 +43,8 @@ const Hero = () => (
           Don’t wait—start today, start now!
         </p>
         <p className="text-red-950 tracking-wide">
-          To begin, click the buttons below to select or deselect your concerns
-          and choose the areas of life you'd like to improve.
+          To begin, click the buttons below to select the areas of your life
+          you'd like to improve.
         </p>
       </p>
     </div>

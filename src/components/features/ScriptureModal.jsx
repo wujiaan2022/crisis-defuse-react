@@ -24,7 +24,7 @@ const ScriptureModal = ({ scripture, onClose }) => {
             <strong>📖 Summary:</strong> {scripture.summary}
           </p>
           <p>
-            <strong>🧘 Introduction:</strong> {scripture.introduction}
+            <strong>✨ Introduction:</strong> {scripture.introduction}
           </p>
           <p>
             <strong>⚠️ Precautions:</strong> {scripture.precautions || "None"}
