@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { backendURL } from "../../config"; // Adjust path if needed
+import { backendURL } from "../../config";
 
 const TopicList = () => {
   const [topics, setTopics] = useState([]);
@@ -42,6 +42,15 @@ const TopicList = () => {
           ))}
         </ul>
       )}
+
+      <div className="text-center mt-6">
+        <Link
+          to="/"
+          className="inline-block mt-2 text-sm text-yellow-700 underline hover:text-yellow-500"
+        >
+          ⬅️ Back to Home
+        </Link>
+      </div>
     </div>
   );
 };

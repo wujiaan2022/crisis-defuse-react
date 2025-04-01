@@ -1,23 +1,33 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { backendURL } from "../../config";
 
-const topicContent = {
-  "meditation-warning": {
-    title: "Why is meditation dangerous for ordinary people?",
-    content: `Sitting meditation may seem peaceful, but without pure thoughts and deep mental discipline, ordinary people risk connecting with underground spirits rather than receiving heavenly energy...`,
-  },
-  "recitation-safety": {
-    title: "The safest way to change your destiny: Recitation",
-    content: `Reciting Buddhist scriptures is safe, free, and deeply effective. Unlike meditation, it does not require a pure or controlled mind to begin. Even in your hardest moments, you can begin...`,
-  },
-  "karmic-creditors": {
-    title: "Understanding karmic debt and spiritual creditors",
-    content: `When someone owes karma from past lives, spirits may seek repayment through emotional, physical, or life obstacles. Recitation helps repay these spiritual debts...`,
-  },
-};
+import ReactMarkdown from "react-markdown";
 
 const TopicArticle = () => {
   const { slug } = useParams();
-  const topic = topicContent[slug];
+  const [topic, setTopic] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTopic = async () => {
+      try {
+        const response = await fetch(`${backendURL}/topics/${slug}`);
+        const data = await response.json();
+        setTopic(data);
+      } catch (error) {
+        console.error("Error fetching topic:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopic();
+  }, [slug]);
+
+  if (loading) {
+    return <p className="p-6 text-center text-yellow-600">Loading topic...</p>;
+  }
 
   if (!topic) {
     return <div className="p-6 text-center text-red-600">Topic not found.</div>;
@@ -25,9 +35,30 @@ const TopicArticle = () => {
 
   return (
     <div className="p-6 max-w-3xl mx-auto text-yellow-900">
-      <h2 className="text-2xl font-bold mb-4">{topic.title}</h2>
-      <p className="leading-relaxed whitespace-pre-line">{topic.content}</p>
+      <h2 className="text-2xl font-bold mb-4">{topic?.title || "Topic"}</h2>
+      <ReactMarkdown>{topic?.content || "No content found."}</ReactMarkdown>
+      <Link
+        to="/topics"
+        className="inline-block mt-2 text-sm text-yellow-700 underline hover:text-yellow-500"
+      >
+        ⬅️ Back to All Topics
+      </Link>
     </div>
+
+    // <div className="p-6 max-w-3xl mx-auto text-yellow-900">
+    //   <h2 className="text-2xl font-bold mb-4">{topic.title}</h2>
+    //   <ReactMarkdown className="prose prose-sm sm:prose lg:prose-lg text-yellow-900">
+    //     {topic.content}
+    //   </ReactMarkdown>
+    //   <div className="text-center mt-6">
+    //     <Link
+    //       to="/topics"
+    //       className="inline-block mt-2 text-sm text-yellow-700 underline hover:text-yellow-500"
+    //     >
+    //       ⬅️ Back to All Topics
+    //     </Link>
+    //   </div>
+    // </div>
   );
 };
 
