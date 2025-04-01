@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import headerBg from "../../assets/Rainbow2.jpg";
 
 const Footer = () => (
-  <footer className="bg-gray-800 text-white text-center p-4 text-sm md:text-base">
+  <footer
+    className="p-4 md:px-8 text-red-950 flex justify-between items-center bg-cover bg-center bg-no-repeat shadow-md"
+    style={{ backgroundImage: `url(${headerBg})` }}
+  >
     <p className="font-medium">
-      🌟 Stay tuned for our daily hot topic on <strong>Why & How</strong> 🌿
+    🙏🏻 Stay tuned for our daily hot topic on <strong>Why & How</strong> 🌿
     </p>
 
     <Link
       to="/topic/meditation-warning"
-      className="mt-1 hover:text-yellow-300 block"
+      className="mt-1 hover:text-blue-900 block"
     >
       🔍 Today's Topic:{" "}
       <span className="italic">
