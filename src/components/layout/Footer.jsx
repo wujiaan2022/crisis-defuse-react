@@ -3,11 +3,11 @@ import headerBg from "../../assets/Rainbow2.jpg";
 
 const Footer = () => (
   <footer
-    className="p-4 md:px-8 text-red-950 flex justify-between items-center bg-cover bg-center bg-no-repeat shadow-md"
+    className="p-4 md:px-8 flex flex-col md:flex-row md:justify-between items-center gap-4 bg-cover bg-center bg-no-repeat shadow-md text-red-950"
     style={{ backgroundImage: `url(${headerBg})` }}
   >
     <p className="font-medium">
-    🙏🏻 Stay tuned for our daily hot topic on <strong>Why & How</strong> 🌿
+      🙏🏻 Stay tuned for our daily hot topic on <strong>Why & How</strong> 🌿
     </p>
 
     <Link
