@@ -1,7 +1,12 @@
 import React from "react";
 import ScripturePinyin from "./ScripturePinyin";
+import { useCount, useScrollToTop } from "../../hooks";
+import CounterControl from "./CounterControl";
 
 const ScriptureModal = ({ scripture, onClose }) => {
+  const { count, increase, decrease, reset } = useCount();
+  const { scrollRef, scrollToTop } = useScrollToTop();
+
   if (!scripture) return null;
 
   return (
@@ -61,13 +66,26 @@ const ScriptureModal = ({ scripture, onClose }) => {
           )}
 
           <div className="bg-yellow-50 p-3 rounded-lg mt-4 text-sm">
-            <pre className="whitespace-pre-wrap text-yellow-900">
+            <pre
+              ref={scrollRef}
+              className="whitespace-pre-wrap text-yellow-900"
+            >
               <ScripturePinyin
                 title={scripture.title}
                 content={scripture.content}
               />
             </pre>
           </div>
+
+          <CounterControl
+            count={count}
+            increase={() => {
+              increase();
+              scrollToTop();
+            }}
+            decrease={decrease}
+            reset={reset}
+          />
         </div>
       </div>
     </div>
