@@ -39,17 +39,21 @@ const ScriptureModal = ({ scripture, onClose }) => {
           {scripture.audio && (
             <div>
               <strong>🎵 Audio:</strong>
-              <audio controls className="w-full mt-1">
+              <audio controls loop className="w-full mt-1">
                 <source src={scripture.audio} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
+              <p className="text-sm text-gray-500 mt-1">
+                🔄 Audio will loop. On Android, you can lock the screen and keep
+                listening.
+              </p>
             </div>
           )}
 
           {scripture.video && (
             <div className="mt-3">
               <strong>🎥 Video:</strong>
-              <video controls className="w-full mt-1">
+              <video controls loop className="w-full mt-1">
                 <source src={scripture.video} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
