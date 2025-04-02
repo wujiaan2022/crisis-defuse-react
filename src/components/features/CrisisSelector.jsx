@@ -57,8 +57,7 @@ const CrisisSelector = () => {
     <div className="p-4 text-yellow-900 rounded-lg">
       <div className="text-lg font-semibold text-center mb-4">
         <p>
-          🌟 Remember, whatever situation you are in right now, this is not the
-          end!
+          🌟 Whatever you're going through — You can change it!
         </p>
         <p>
           💖 You are Not alone, you are Not helpless, you are Not hopeless! 🌈

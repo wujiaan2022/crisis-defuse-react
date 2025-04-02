@@ -16,7 +16,7 @@ const Hero = () => (
     {/* ✅ Responsive Grid Layout */}
     <div className="relative z-10 mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-4">
       {/* ✅ Highlight Text (Spans 3 cols) */}
-      <h2 className="mt-0 mb-5 col-span-1 md:col-span-4 lg:col-span-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-red-950 font-bold text-left tracking-wider">
+      <h2 className="mt-0 mb-2 md:mb-5 col-span-1 md:col-span-4 lg:col-span-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-red-950 font-bold text-left tracking-wider">
         Happiness is not far away!
       </h2>
 
