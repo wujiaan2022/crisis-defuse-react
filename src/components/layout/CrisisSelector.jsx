@@ -1,8 +1,6 @@
-import ScriptureModal from "./ScriptureModal";
-
 import { useState } from "react";
-
 import { backendURL } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 const crises = [
   "Health Issues",
@@ -18,11 +16,9 @@ const CrisisSelector = () => {
   const [loadingCrisis, setLoadingCrisis] = useState("");
   const [collapsed, setCollapsed] = useState({});
 
-  const [selectedScripture, setSelectedScripture] = useState(null);
+  const navigate = useNavigate(); // ✅ Added
 
-  // const baseURL = "http://localhost:5000";
-
-  const fetchScriptures = async (crisis) => {
+  const fetchScripturesSetAnswers = async (crisis) => {
     setLoadingCrisis(crisis);
     try {
       const query = `crises=${encodeURIComponent(crisis)}`;
@@ -53,12 +49,15 @@ const CrisisSelector = () => {
     setLoadingCrisis("");
   };
 
+  // ✅ Replace old click handler
+  const handleClickScripture = (scripture) => {
+    navigate(`/scriptures/${scripture.id}`);
+  };
+
   return (
     <div className="p-4 text-yellow-900 rounded-lg">
       <div className="text-lg font-semibold text-center mb-4">
-        <p>
-          🌟 Whatever you're going through — You can change it!
-        </p>
+        <p>🌟 Whatever you're going through — You can change it!</p>
         <p>
           💖 You are Not alone, you are Not helpless, you are Not hopeless! 🌈
         </p>
@@ -69,7 +68,7 @@ const CrisisSelector = () => {
         {crises.map((crisis) => (
           <button
             key={crisis}
-            onClick={() => fetchScriptures(crisis)}
+            onClick={() => fetchScripturesSetAnswers(crisis)}
             className={`cursor-pointer px-4 py-2 rounded-lg shadow-md transition text-center ${
               answers[crisis]
                 ? "bg-yellow-300"
@@ -107,23 +106,7 @@ const CrisisSelector = () => {
                     {sections.foundation.map((s, i) => (
                       <li key={i}>
                         <button
-                          onClick={() => {
-                            const audioURL = s.audio
-                              ? `${backendURL}/${s.audio}`
-                              : null;
-                            const videoURL = s.video
-                              ? `${backendURL}/${s.video}`
-                              : null;
-
-                            console.log("Audio URL:", audioURL);
-                            console.log("Video URL:", videoURL);
-
-                            setSelectedScripture({
-                              ...s,
-                              audio: audioURL,
-                              video: videoURL,
-                            });
-                          }}
+                          onClick={() => handleClickScripture(s)}
                           className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
@@ -144,23 +127,7 @@ const CrisisSelector = () => {
                     {sections.main.map((s, i) => (
                       <li key={i}>
                         <button
-                          onClick={() => {
-                            const audioURL = s.audio
-                              ? `${backendURL}/${s.audio}`
-                              : null;
-                            const videoURL = s.video
-                              ? `${backendURL}/${s.video}`
-                              : null;
-
-                            console.log("Audio URL:", audioURL);
-                            console.log("Video URL:", videoURL);
-
-                            setSelectedScripture({
-                              ...s,
-                              audio: audioURL,
-                              video: videoURL,
-                            });
-                          }}
+                          onClick={() => handleClickScripture(s)}
                           className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
@@ -181,23 +148,7 @@ const CrisisSelector = () => {
                     {sections.help.map((s, i) => (
                       <li key={i}>
                         <button
-                          onClick={() => {
-                            const audioURL = s.audio
-                              ? `${backendURL}/${s.audio}`
-                              : null;
-                            const videoURL = s.video
-                              ? `${backendURL}/${s.video}`
-                              : null;
-
-                            console.log("Audio URL:", audioURL);
-                            console.log("Video URL:", videoURL);
-
-                            setSelectedScripture({
-                              ...s,
-                              audio: audioURL,
-                              video: videoURL,
-                            });
-                          }}
+                          onClick={() => handleClickScripture(s)}
                           className="cursor-pointer text-yellow-900 hover:underline"
                         >
                           {s.name}
@@ -225,12 +176,6 @@ const CrisisSelector = () => {
           </button>
         </div>
       )}
-
-      {/* 🌟 Scripture Modal */}
-      <ScriptureModal
-        scripture={selectedScripture}
-        onClose={() => setSelectedScripture(null)}
-      />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+// Legacy modal kept for reference. Now using full page view in ScripturePage.jsx
+
 import React from "react";
 import ScripturePinyin from "./ScripturePinyin";
 import { useCount, useScrollToTop } from "../../hooks";

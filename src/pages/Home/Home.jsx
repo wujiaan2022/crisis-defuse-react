@@ -1,6 +1,6 @@
 import Header_simple from "../../components/layout/Header_simple";
 import Hero from "../../components/layout/Hero";
-import CrisisSelector from "../../components/features/CrisisSelector";
+import CrisisSelector from "../../components/layout/CrisisSelector";
 import RecitationTip from "../../components/layout/RecitationTip";
 import Footer from "../../components/layout/Footer";
 
