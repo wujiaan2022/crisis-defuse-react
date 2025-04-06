@@ -2,6 +2,10 @@ import { useState } from "react";
 import { backendURL } from "../../config";
 import { useNavigate } from "react-router-dom";
 
+import { useFetchScripturesByCrisis } from "../../hooks";
+
+import CrisisAnswerBlock from "../common/CrisisAnswerBlock";
+
 const crises = [
   "Health Issues",
   "Depression & Emotional Struggles",
@@ -12,29 +16,17 @@ const crises = [
 ];
 
 const CrisisSelector = () => {
-  const [answers, setAnswers] = useState({});
-  const [loadingCrisis, setLoadingCrisis] = useState("");
   const [collapsed, setCollapsed] = useState({});
 
   const navigate = useNavigate(); // ✅ Added
 
-  const fetchScripturesSetAnswers = async (crisis) => {
-    setLoadingCrisis(crisis);
-    try {
-      const query = `crises=${encodeURIComponent(crisis)}`;
-      const response = await fetch(
-        `${backendURL}/scriptures/crisis-selection?${query}`
-      );
-      const data = await response.json();
-      setAnswers((prev) => ({
-        ...prev,
-        [crisis]: data[crisis],
-      }));
-    } catch (error) {
-      console.error("Error fetching scriptures:", error);
-    }
-    setLoadingCrisis("");
-  };
+  const {
+    answers,
+    setAnswers,
+    loadingCrisis,
+    setLoadingCrisis,
+    fetchScripturesSetAnswers,
+  } = useFetchScripturesByCrisis(backendURL);
 
   const toggleCollapse = (crisis) => {
     setCollapsed((prev) => ({
@@ -98,68 +90,24 @@ const CrisisSelector = () => {
 
           {!collapsed[crisis] && (
             <div>
-              {/* Foundation */}
-              <div className="mb-3">
-                <h5 className="font-semibold text-yellow-800">🌱 Foundation</h5>
-                {sections.foundation.length > 0 ? (
-                  <ul className="list-disc list-inside text-yellow-800">
-                    {sections.foundation.map((s, i) => (
-                      <li key={i}>
-                        <button
-                          onClick={() => handleClickScripture(s)}
-                          className="cursor-pointer text-yellow-900 hover:underline"
-                        >
-                          {s.name}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm italic text-yellow-600">None</p>
-                )}
-              </div>
-
-              {/* Main */}
-              <div className="mb-3">
-                <h5 className="font-semibold text-yellow-800">🎯 Main</h5>
-                {sections.main.length > 0 ? (
-                  <ul className="list-disc list-outside pl-4 sm:pl-6 text-yellow-800">
-                    {sections.main.map((s, i) => (
-                      <li key={i}>
-                        <button
-                          onClick={() => handleClickScripture(s)}
-                          className="cursor-pointer text-yellow-900 hover:underline"
-                        >
-                          {s.name}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm italic text-yellow-600">None</p>
-                )}
-              </div>
-
-              {/* Help */}
-              <div>
-                <h5 className="font-semibold text-yellow-800">✨ Help</h5>
-                {sections.help.length > 0 ? (
-                  <ul className="list-disc list-outside pl-4 sm:pl-6 text-yellow-800">
-                    {sections.help.map((s, i) => (
-                      <li key={i}>
-                        <button
-                          onClick={() => handleClickScripture(s)}
-                          className="cursor-pointer text-yellow-900 hover:underline"
-                        >
-                          {s.name}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm italic text-yellow-600">None</p>
-                )}
-              </div>
+              <CrisisAnswerBlock
+                title="Foundation"
+                icon="🌱"
+                items={sections.foundation}
+                onItemClick={handleClickScripture}
+              />
+              <CrisisAnswerBlock
+                title="Main"
+                icon="🎯"
+                items={sections.main}
+                onItemClick={handleClickScripture}
+              />
+              <CrisisAnswerBlock
+                title="Help"
+                icon="✨"
+                items={sections.help}
+                onItemClick={handleClickScripture}
+              />
             </div>
           )}
         </div>

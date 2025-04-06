@@ -9,3 +9,5 @@ export function useScrollToTop() {
 
   return { scrollRef, scrollToTop };
 }
+
+export default useScrollToTop

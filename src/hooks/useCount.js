@@ -10,3 +10,5 @@ export function useCount(initialValue = 0) {
 
   return { count, increase, decrease, reset };
 }
+
+export default useCount
