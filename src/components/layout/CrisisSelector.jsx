@@ -123,7 +123,7 @@ const CrisisSelector = () => {
               <div className="mb-3">
                 <h5 className="font-semibold text-yellow-800">🎯 Main</h5>
                 {sections.main.length > 0 ? (
-                  <ul className="list-disc list-inside text-yellow-800">
+                  <ul className="list-disc list-outside pl-4 sm:pl-6 text-yellow-800">
                     {sections.main.map((s, i) => (
                       <li key={i}>
                         <button
@@ -144,7 +144,7 @@ const CrisisSelector = () => {
               <div>
                 <h5 className="font-semibold text-yellow-800">✨ Help</h5>
                 {sections.help.length > 0 ? (
-                  <ul className="list-disc list-inside text-yellow-800">
+                  <ul className="list-disc list-outside pl-4 sm:pl-6 text-yellow-800">
                     {sections.help.map((s, i) => (
                       <li key={i}>
                         <button

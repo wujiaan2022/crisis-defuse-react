@@ -24,8 +24,8 @@ const Header = () => {
 
   const handleClose = () => {
     const storedName = localStorage.getItem("userName");
-    if (storedName) setUserName(storedName); // <-- Update header after register
-    setModalType(null);
+    if (storedName) setUserName(storedName); // 👈 Update Header
+    setModalType(null); // 👈 Close the modal
   };
 
   return (
