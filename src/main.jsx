@@ -1,11 +1,14 @@
-import { StrictMode } from "react";
+import { StrictMode } from "react"; // Helps catch bugs in development
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import { backendURL } from "./config";
 import App from "./App.jsx";
-import "./index.css"; // ✅ This ensures Tailwind styles are applied globally
+import { CrisisSelectorProvider } from "./context/CrisisSelectorContext"; // 🧠 Import your provider
+import "./index.css"; // ✅ Tailwind styles
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <CrisisSelectorProvider backendURL={backendURL}>
+      <App />
+    </CrisisSelectorProvider>
   </StrictMode>
 );

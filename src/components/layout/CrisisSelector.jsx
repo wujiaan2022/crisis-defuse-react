@@ -2,7 +2,7 @@ import { useState } from "react";
 import { backendURL } from "../../config";
 import { useNavigate } from "react-router-dom";
 
-import { useFetchScripturesByCrisis } from "../../hooks";
+import { useCrisisSelector } from "../../context/CrisisSelectorContext";
 
 import CrisisAnswerBlock from "../common/CrisisAnswerBlock";
 
@@ -26,7 +26,7 @@ const CrisisSelector = () => {
     loadingCrisis,
     setLoadingCrisis,
     fetchScripturesSetAnswers,
-  } = useFetchScripturesByCrisis(backendURL);
+  } = useCrisisSelector();
 
   const toggleCollapse = (crisis) => {
     setCollapsed((prev) => ({
